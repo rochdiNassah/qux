@@ -13,9 +13,9 @@ const httpClient = new Http2Client(false);
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 
 (async () => {
-  const cuid = 'AYgOuOu8n9pBexbl4K6gXsrv8rZL5Oqh4wXjiicsHnSt9PNLWuZtMdOTBwe9sRTK6dmwfaYro6CMlK336tP3oJYJTkjSylYGZ-8d4tBPt9-9zg';
+  const cuid = 'AYhFfb0t5vLTNBU02BK9xuH23Zr54CK8g7YuvEez2f2Ce5iZzYmN2wlvkq-qNBvAzUDwF29h6DS9MKGY1i16wR4zKilBIgfhmrjVimTDANTwiQ';
   const datr = 'LS4uaKqjexvPknJhuSVD1BWM';
-  const lsd = 'AVrCihG37_9';
+  const lsd = 'AVrCihG3OoQ';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr='+datr,
