@@ -34,6 +34,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   }
 
   Promise.all(p).then(() => {
+    log('end');
     httpClient.post(url, headers, 'lsd='+lsd+'&n=896475').then(res => log(res.statusCode));
   });
 })();
