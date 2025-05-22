@@ -14,7 +14,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 (async () => {
   const cuid = 'AYidzOsA7yBoTVIAWhY0XxHGsCns1lcQgGtcprzAwqUaGFD7J6hm2E5rFDJrIpY_yO4nua3QSUZvxolOMJ5yNu5y3vz3zpDHSQkAZJRrW7BKLQ';
-  const lsd = 'AVpc27UCaSo';
+  const lsd = 'AVrCihG3NAE';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr=LS4uaKqjexvPknJhuSVD1BWM',
