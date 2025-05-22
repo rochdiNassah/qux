@@ -17,7 +17,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   const lsd = 'AVpc27UCaSo';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
-    'Cookie': 'datr=F_YuaFQVmcfePVvsUJJtDvkK',
+    'Cookie': 'datr=LS4uaKqjexvPknJhuSVD1BWM',
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': USER_AGENT,
     'Sec-Fetch-Site': 'same-origin'
