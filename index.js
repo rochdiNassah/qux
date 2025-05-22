@@ -13,8 +13,8 @@ const httpClient = new Http2Client(false);
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 
 (async () => {
-  const cuid = 'AYhK14oo9cuj1Agr_2Fil2yi1OIMkuGunRn1opjcWhwHLVc1IKFVVNHfrVp6Lhpctozmlm6EyF8nzsJwd35kKWqqPuJsiayujr_seO29-_q6NY6CXnh2m6-T5mCVONsEQW52o6s_mBZt02VuuooikqRlyguJbnh9oKnUupOs28mOww';
-  const lsd = 'AVpc27UCGHI';
+  const cuid = 'AYikki_hJ5-KOhv_EmwJwMQJ6nnVwtcnEBqyufmo9kFkKqUxD1o-1jqwA2-e_BI3HpjZE4ESDWhdw8Ipgh6dHDz8wmujCsQltQkEtMa1Cgwqw_837KwPC6BRIoFATqSgPG3Ox2HXHU1ylPedV0SrFi8uDjsn2NWknjaPKLvM7f053A';
+  const lsd = 'AVpc27UCaSo';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr=F_YuaFQVmcfePVvsUJJtDvkK',
