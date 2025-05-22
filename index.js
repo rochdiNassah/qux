@@ -24,7 +24,8 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   // child_process.exec('siren warn');
 
-  const lsd = helpers.randomString(11);
+  // const lsd = helpers.randomString(11);
+  const lsd = 'AVpc27UCYxc';
   log(lsd);
   const p = [];
   for (let i = 0, code; 2 > i; ++i) {
