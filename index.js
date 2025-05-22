@@ -15,7 +15,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
 (async () => {
   const url = 'https://www.facebook.com/recover/code/?cuid=AYg_cW3yZHSOcFTqkoBbPBws-qKC4dNk4jS9PGwVWxM7fyX0DGYV-fOpwNg9GQYyD3hfttbudcvOpEbqt-Cq30liV37yoCATZHm0Srw9N2W0SifcLJk5ZeaXyXuxokKfmLwM8W5QniBE34dZdLEiIMkwtAwrMmz2tNaPd3GlTGpFAhxNTZ6Js-bkmBmIKUe5g66778cr7hiDNNMmQnATRU4tBDduBOh6l6cAMqgeCCJb35sY8HhFawj4hf5VpW0agcB1oxVGAOq9Sc2ghstKl7gZ0qlI_M9UwnnQeTCrnM6khQ';
   const headers = {
-    'Cookie': 'datr=LS4uaKqjexvPknJhuSVD1BWM',
+    'Cookie': 'datr=F_YuaFQVmcfePVvsUJJtDvkK',
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': USER_AGENT,
     'Sec-Fetch-Site': 'same-origin'
