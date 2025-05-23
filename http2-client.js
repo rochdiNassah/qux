@@ -38,6 +38,10 @@ class Http2Client extends EventEmitter {
     return _request.call(this, 'PUT', urlString, headers, body);
   }
 
+  patch(urlString, headers, body) {
+    return _request.call(this, 'PATCH', urlString, headers, body);
+  }
+
   delete(urlString, headers, body) {
     return _request.call(this, 'DELETE', urlString, headers, body);
   }
