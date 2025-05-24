@@ -134,7 +134,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   }
   
 
-  baseUrl = 'https://web.facebook.com';
+  baseUrl = 'https://www.facebook.com';
   const { jazoest, lsd, datr } = await getTokens();
   log('tokens ok');
   const cuid = await getCuid({ email: 'rokyoplus@gmail.com', jazoest, lsd, datr });
