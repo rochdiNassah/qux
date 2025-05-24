@@ -15,12 +15,11 @@ const ee = new EventEmitter();
   const targets = {
     ilyas: {
       tokens: [
-        'MTM2MzQzMDY5MjUyODMyNDgxMA.Ga93RW.eWW4qSMWkAuaSYyWD9VkKgrnQprSLzbfwKf8f8',
-        'MTM2Mjc3ODkxMjAzNTE4MDY3NQ.GInvH0.i59tb9bL8dCs9eL0ImXGNwTR5DhG5eAO-iKKfE',
-        'MTM2MTkzMzEzNzE3NjgyNTkzMA.G7G7de.JBDDbplkwXRVW7lmfBLKw2v68L36vnucH5lI1w',
-        'MTM2Mjc4ODI1NTI3NTI4Njc0Mg.G8BQ4Q.UyGxNoEcE4AItXcCR_D3skxIhDz7uMW8f4NZPs',
-        'MTM2MzI1NzMxMjU0NTk5Njg5MQ.G4W9sK.4GFiCBAIAfdNXBF9nL9B6DhG5gaBjJVrcsQi_I',
-        'MTM2MzQzMDY5MjUyODMyNDgxMA.Gxj-IE.LoRK2f5RYRtj85SEZTLQz_D6VvUvphJimPPmd8',
+        'MTM2Mjc3ODkxMjAzNTE4MDY3NQ.G1RBFO.lUa6f7Uatxm5M1aKDxQNPNYWmTtdEX8ut0tXyU',
+        'MTM2MTkzMzEzNzE3NjgyNTkzMA.GdKlFV.TcaOxekBFv57TbhYXERhnKhAfPqfT5wHQ1vDoE',
+        'MTM2Mjc4ODI1NTI3NTI4Njc0Mg.G7SuuW.0Nw8pzcN31OSe2ctMN-wjqT0MWTfztTcVyuLQI',
+        'MTM2MzI1NzMxMjU0NTk5Njg5MQ.GHmMQf.jr5SXTM243R1jOwHzqBuPuVMTPSIplizM5aUCE',
+        'MTM2MzQzMDY5MjUyODMyNDgxMA.Gi5mxK.yqQ9CPS9O6rJRjAf-5uYFwQSDSawGAU7S5tP3M'
       ],
       users: {
         blanco: '1361019671142465827',
@@ -53,7 +52,7 @@ const ee = new EventEmitter();
     function closed() {
       log('connection close');
       clearInterval(client.hbInterval);
-      // attach(token);
+      setTimeout(attach, 4e3, token);
     }
 
     client.write = data => {
@@ -65,12 +64,11 @@ const ee = new EventEmitter();
     });
 
     client.on('op::10', data => {
-      log('recv hb interval');
-      log(data);
       clearInterval(client.hbInterval);
       client.hbInterval = setInterval(() => client.write({"op":1,"d":75}), data.d.heartbeat_interval);
     });
 
+    const targetUser = users.front_man;
     client.on('op::0', async data => {
       const { t, d } = data;
 
@@ -79,16 +77,14 @@ const ee = new EventEmitter();
         client.write({"op":4,"d":{"guild_id":null,"channel_id":null,"self_mute":true,"self_deaf":false,"self_video":false,"flags":2}});
         client.write({"op":3,"d":{"status":"invisible","since":0,"activities":[],"afk":false}});
         // client.write({"op":37,"d":{"subscriptions":{"1312666401189920829":{"members":[users.blanco]}}}})
-        client.write({"op":37,"d":{"subscriptions":{"1312666401189920829":{"members":[users.front_man]}}}})
+        client.write({"op":37,"d":{"subscriptions":{"1312666401189920829":{"members":[targetUser]}}}})
       } else if ('PRESENCE_UPDATE' === t) {
-        if (users.blanco === d.user.id) {
+        if (targetUser === d.user.id) {
           ee.emit('adminStatus', d.status);
         }
       }
     });
   }
-
-  attach(tokens[0]);
 
   const url = 'https://discord.com/api/v9/users/@me';
   const headers2 = {
@@ -121,14 +117,23 @@ const ee = new EventEmitter();
   //   res.data.errors ? log(res.data.errors.global_name) : log(res.data.errors);
   // });
 
+  attach(tokens[0]);
   var isAdminAway = null;
-  ee.on('adminStatus', status => isAdminAway = 'offline' === status);
+  ee.on('adminStatus', status => {
+    isAdminAway = 'offline' === status;
+    if (!isAdminAway) {
+      tokens.forEach(token => {
+        headers['Authorization'] = token;
+        httpClient.post('https://discord.com/api/v9/channels/'+channels[0].id+'/typing', headers);
+      });
+    }
+  });
   
   const headers = {
-    Host: 'discord.com',
+    'Host': 'discord.com',
     'Content-Length': '0',
     'Sec-Ch-Ua-Platform': '"Linux"',
-    Authorization: '',
+    'Authorization': '',
     'X-Debug-Options': 'bugReporterEnabled',
     'Sec-Ch-Ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
     'Sec-Ch-Ua-Mobile': '?0',
@@ -136,15 +141,15 @@ const ee = new EventEmitter();
     'X-Super-Properties': 'eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkNocm9tZSIsImRldmljZSI6IiIsInN5c3RlbV9sb2NhbGUiOiJmciIsImhhc19jbGllbnRfbW9kcyI6ZmFsc2UsImJyb3dzZXJfdXNlcl9hZ2VudCI6Ik1vemlsbGEvNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNC4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTM0LjAuMC4wIiwib3NfdmVyc2lvbiI6IiIsInJlZmVycmVyIjoiIiwicmVmZXJyaW5nX2RvbWFpbiI6IiIsInJlZmVycmVyX2N1cnJlbnQiOiIiLCJyZWZlcnJpbmdfZG9tYWluX2N1cnJlbnQiOiIiLCJyZWxlYXNlX2NoYW5uZWwiOiJzdGFibGUiLCJjbGllbnRfYnVpbGRfbnVtYmVyIjozOTE5MjEsImNsaWVudF9ldmVudF9zb3VyY2UiOm51bGx9',
     'X-Discord-Locale': 'en-US',
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-    Accept: '*/*',
-    Origin: 'https://discord.com',
+    'Accept': '*/*',
+    'Origin': 'https://discord.com',
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    Referer: 'https://discord.com/channels/263261754514079746/263261754514079746',
+    'Referer': 'https://discord.com/channels/263261754514079746/263261754514079746',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'fr',
-    Priority: 'u=1, i'
+    'Priority': 'u=1, i'
   };
   
   let isPaused = false;
