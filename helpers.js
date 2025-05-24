@@ -1,5 +1,7 @@
 'use strict';
 
+// console.clear();
+
 const util = require('node:util');
 const https = require('node:https');
 const { format } = util;
