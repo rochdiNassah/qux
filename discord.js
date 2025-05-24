@@ -6,7 +6,7 @@ const log = console.log.bind(console);
 const EventEmitter = require('node:events');
 const WebScoket = require('ws');
 
-const { rand, formatDuration, benchmark, getBackoff, arrayRand, parseTemplate, wait } = helpers;
+const { parseHeaders, rand } = helpers;
 
 const httpClient = new Http2Client(false);
 const ee = new EventEmitter();
@@ -15,11 +15,11 @@ const ee = new EventEmitter();
   const targets = {
     ilyas: {
       tokens: [
-        'MTM2Mjc3ODkxMjAzNTE4MDY3NQ.G1RBFO.lUa6f7Uatxm5M1aKDxQNPNYWmTtdEX8ut0tXyU',
-        'MTM2MTkzMzEzNzE3NjgyNTkzMA.GdKlFV.TcaOxekBFv57TbhYXERhnKhAfPqfT5wHQ1vDoE',
-        'MTM2Mjc4ODI1NTI3NTI4Njc0Mg.G7SuuW.0Nw8pzcN31OSe2ctMN-wjqT0MWTfztTcVyuLQI',
-        'MTM2MzI1NzMxMjU0NTk5Njg5MQ.GHmMQf.jr5SXTM243R1jOwHzqBuPuVMTPSIplizM5aUCE',
-        'MTM2MzQzMDY5MjUyODMyNDgxMA.Gi5mxK.yqQ9CPS9O6rJRjAf-5uYFwQSDSawGAU7S5tP3M'
+        'MTM2Mjc3ODkxMjAzNTE4MDY3NQ.GcIwbw.dt9GIc0g7agXzYGmOc7FwjgihbMe9rxe5db0sM',
+        'MTM2MTkzMzEzNzE3NjgyNTkzMA.GYNPAm.andITgsWp4pztHW8SdqKcO4U1Z6sH8julm70Ws',
+        'MTM2Mjc4ODI1NTI3NTI4Njc0Mg.Gw7fCK.py6XDTkw6dRDQPN2HtOgCi8BZm8HhqlCqrXbvQ',
+        'MTM2MzI1NzMxMjU0NTk5Njg5MQ.GmHcI7.T2yRPlh0UAcBVdzMRh2xRXqm8_jX99lgDw__Zw',
+        'MTM2MzQzMDY5MjUyODMyNDgxMA.G0lF0Z.XQp2Z1bMaEXEePjfhVji5yzG0mm3FvcQ6p8XDg'
       ],
       users: {
         blanco: '1361019671142465827',
@@ -38,7 +38,7 @@ const ee = new EventEmitter();
 
   // tokens.shuffle();
 
-  function attach(token) {
+  function attach(token, targetUser) {
     const client = new WebScoket('wss://gateway.discord.gg/?encoding=json&v=9');
     client.once('error', () => log('connection error'));
     client.once('close', () => closed());
@@ -68,7 +68,6 @@ const ee = new EventEmitter();
       client.hbInterval = setInterval(() => client.write({"op":1,"d":75}), data.d.heartbeat_interval);
     });
 
-    const targetUser = users.front_man;
     client.on('op::0', async data => {
       const { t, d } = data;
 
@@ -89,7 +88,6 @@ const ee = new EventEmitter();
   const url = 'https://discord.com/api/v9/users/@me';
   const headers2 = {
     Host: 'discord.com',
-    // Cookie: '__dcfduid=1637d5f037bd11f0bf9307b47ac93eb5; __sdcfduid=1637d5f137bd11f0bf9307b47ac93eb5c9553f3cc9a5f8d32867dc40d8ed719540bc3a9931efbab8cca466fa7fb830f7; __cfruid=612a74ee09f6da25969c9cea9dca035c692bcef0-1747994570; _cfuvid=EwiEbxIvNAVt4Dsm0dxu4ytI.0cuQXiKVvfpOeJBzAc-1747994570964-0.0.1.1-604800000; __stripe_mid=d49b02e6-33b0-4c2c-9ac2-11b5a54cbfd32fd968; __stripe_sid=e1d469b7-a022-46eb-85a2-cd2adcef81202df6db; cf_clearance=_xwe9QXYQkFSWSCyzGONXrt58mZW65GeMPluiQzaUeM-1747995373-1.2.1.1-oWT0CzGWFT3kC1ixZBQ5QBl8KYFACa1yGmGC3j3UvWP2FYFpZf1SiIc7iYgjXMLvs6yM6Wi.ASVoxOsKvonUHxr0pyalk1C7tBmaRZqrPwPw4PEkgfQStUX1a3MHX7MEG.99KVSnjHEx0nppDdD5Bp_lB3qsd047TeDf6HzoeNDNZxpQMlEr9M1JjPH6Ui1J4AZ42uj6KykLWywoVLSy0cNYRE.9MbpBGe1C8Sjslt0Octtx3pahfz8cLjT4s.9CXLhjhcD8Nvf_QK.bCmrIxkvLdPlcugYyBxq88a.V.exsFw.3YW271v13Sfom6sdu_vVDFwoPTl0XNNMQ9zINGwTzCHLOFMOdr.qA1.a2XZ4',
     'Sec-Ch-Ua-Platform': '"Linux"',
     Authorization: 'MTM3NTQxMzY2NzY3OTcwMzA1MA.GKDAhV.bogcDO9SzBVs5g6sIa5MF9WV8Dejjf8KgwfbfQ',
     'X-Debug-Options': 'bugReporterEnabled',
@@ -105,7 +103,7 @@ const ee = new EventEmitter();
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    Referer: 'https://discord.com/channels/1312666401189920829/1312672076334895114',
+    Referer: 'https://discord.com/channels/1312666401189920829/1369468564540489799',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'fr',
     Priority: 'u=1, i'
@@ -117,7 +115,8 @@ const ee = new EventEmitter();
   //   res.data.errors ? log(res.data.errors.global_name) : log(res.data.errors);
   // });
 
-  attach(tokens[0]);
+  attach(tokens[0], users.front_man);
+
   var isAdminAway = null;
   ee.on('adminStatus', status => {
     isAdminAway = 'offline' === status;
@@ -130,26 +129,25 @@ const ee = new EventEmitter();
   });
   
   const headers = {
-    'Host': 'discord.com',
     'Content-Length': '0',
     'Sec-Ch-Ua-Platform': '"Linux"',
-    'Authorization': '',
+    Authorization: '',
     'X-Debug-Options': 'bugReporterEnabled',
     'Sec-Ch-Ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
     'Sec-Ch-Ua-Mobile': '?0',
     'X-Discord-Timezone': 'Africa/Casablanca',
-    'X-Super-Properties': 'eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkNocm9tZSIsImRldmljZSI6IiIsInN5c3RlbV9sb2NhbGUiOiJmciIsImhhc19jbGllbnRfbW9kcyI6ZmFsc2UsImJyb3dzZXJfdXNlcl9hZ2VudCI6Ik1vemlsbGEvNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNC4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTM0LjAuMC4wIiwib3NfdmVyc2lvbiI6IiIsInJlZmVycmVyIjoiIiwicmVmZXJyaW5nX2RvbWFpbiI6IiIsInJlZmVycmVyX2N1cnJlbnQiOiIiLCJyZWZlcnJpbmdfZG9tYWluX2N1cnJlbnQiOiIiLCJyZWxlYXNlX2NoYW5uZWwiOiJzdGFibGUiLCJjbGllbnRfYnVpbGRfbnVtYmVyIjozOTE5MjEsImNsaWVudF9ldmVudF9zb3VyY2UiOm51bGx9',
-    'X-Discord-Locale': 'en-US',
+    'X-Super-Properties': 'eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkNocm9tZSIsImRldmljZSI6IiIsInN5c3RlbV9sb2NhbGUiOiJmciIsImhhc19jbGllbnRfbW9kcyI6ZmFsc2UsImJyb3dzZXJfdXNlcl9hZ2VudCI6Ik1vemlsbGEvNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNC4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTM0LjAuMC4wIiwib3NfdmVyc2lvbiI6IiIsInJlZmVycmVyIjoiIiwicmVmZXJyaW5nX2RvbWFpbiI6IiIsInJlZmVycmVyX2N1cnJlbnQiOiIiLCJyZWZlcnJpbmdfZG9tYWluX2N1cnJlbnQiOiIiLCJyZWxlYXNlX2NoYW5uZWwiOiJzdGFibGUiLCJjbGllbnRfYnVpbGRfbnVtYmVyIjo0MDI0MDIsImNsaWVudF9ldmVudF9zb3VyY2UiOm51bGwsImNsaWVudF9sYXVuY2hfaWQiOiIzM2MwYWI4ZC05NjExLTQ2ZTgtYWM4YS01NTgxNzMwYjFkN2EiLCJjbGllbnRfaGVhcnRiZWF0X3Nlc3Npb25faWQiOiI1MjM3OTMwOS1mYzQzLTQyMzMtYmQyNS1iODgyMTQzY2Q2ZDUiLCJjbGllbnRfYXBwX3N0YXRlIjoiZm9jdXNlZCJ9',
+    'X-Discord-Locale': 'fr',
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-    'Accept': '*/*',
-    'Origin': 'https://discord.com',
+    Accept: '*/*',
+    Origin: 'https://discord.com',
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    'Referer': 'https://discord.com/channels/263261754514079746/263261754514079746',
+    Referer: 'https://discord.com/channels/1312666401189920829/1369468564540489799',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'fr',
-    'Priority': 'u=1, i'
+    Priority: 'u=1, i'
   };
   
   let isPaused = false;
